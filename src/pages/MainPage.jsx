@@ -1,6 +1,6 @@
 import { Box, IconButton, SimpleGrid } from '@chakra-ui/react'
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import Card from '../components/Card'
 import { AddIcon } from '@chakra-ui/icons'
 
@@ -18,6 +18,7 @@ const albumes = [
 
 const MainPage = () => {
   const { albumsList } = useSelector(state => state.albumes)
+  const dispatch = useDispatch()
   
   const handleCreateAlbum = () => {
     alert('Create album')

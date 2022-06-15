@@ -25,6 +25,11 @@ const initialState = {
 
 const albumesReducer = (state = initialState, action) => {
   switch (action.type) {
+    case types.addAlbum:
+      return {
+        ...state,
+        albumsList: [...state.albumsList, action.payload]
+      }
     default:
       return state
   }

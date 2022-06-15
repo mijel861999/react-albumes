@@ -1,5 +1,7 @@
 const types = {
-  authLogin: '[auth] login'
+  authLogin: '[auth] login',
+
+  addAlbum: '[albumes] add album',
 }
 
 export default types
