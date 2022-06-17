@@ -3,6 +3,7 @@ import types from '../types/type'
 const initialState = {
   albumsList: [
     {
+      id: 1,
       title: 'Mr Morales and the big stepperes',
       artist: 'Kendick Lamar',
       year: '2022',
@@ -12,6 +13,7 @@ const initialState = {
       rating: 4,
     },
     {
+      id: 2,
       title: 'The Off-Season',
       artist: 'J. Cole',
       year: '2021',
@@ -21,6 +23,8 @@ const initialState = {
       rating: 4
     }
   ],
+  albumActive: {
+  }
 }
 
 const albumesReducer = (state = initialState, action) => {
@@ -29,6 +33,16 @@ const albumesReducer = (state = initialState, action) => {
       return {
         ...state,
         albumsList: [...state.albumsList, action.payload]
+      }
+    case types.setActiveAlbum:
+      return {
+        ...state,
+        albumActive: action.payload
+      }
+    case types.setCleanActiveAlbum:
+      return {
+        ...state,
+        albumActive: {}
       }
     default:
       return state

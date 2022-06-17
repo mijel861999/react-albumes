@@ -1,15 +1,23 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import { Box, Heading, useDisclosure } from '@chakra-ui/react'
 import PopUp from './popup'
+import { SetActiveAlbum } from '../actions/albumes'
 
 
-const Card = ({ background, title, artist, year, frontImage, notas, rating }) => {
+const Card = ({ background, title, artist, year, frontImage, notas, rating, album }) => {
+  const dispatch = useDispatch()
   const { isOpen, onOpen, onClose } =  useDisclosure()
+  const handleOpenCard = () => {
+    dispatch(SetActiveAlbum(album))
+    onOpen()
+  }
+
   return (
     <Box
       align='center' 
       style={{ cursor: 'pointer'}}
-      onClick={onOpen}
+      onClick={handleOpenCard}
     >
       <Box
         w='97px'

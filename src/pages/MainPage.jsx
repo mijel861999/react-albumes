@@ -6,6 +6,7 @@ import { AddIcon } from '@chakra-ui/icons'
 
 const albumes = [
   {
+    id: 1,
     title: 'Mr Morales and the big stepperes',
     artist: 'Kendick Lamar',
     year: '2020',
@@ -51,6 +52,7 @@ const MainPage = () => {
             frontImage={album.frontImage}
             notas={album.notas}
             rating={album.rating}
+            album={album}
           />
         ))}
       </SimpleGrid>
