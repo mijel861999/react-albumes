@@ -34,6 +34,13 @@ const albumesReducer = (state = initialState, action) => {
         ...state,
         albumsList: [...state.albumsList, action.payload]
       }
+    case types.editAlbum:
+      return {
+        ...state,
+        albumsList: state.albumsList.map(
+          album => (album.id === action.payload.id ? action.payload : album)
+        )
+      }
     case types.setActiveAlbum:
       return {
         ...state,

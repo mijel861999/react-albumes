@@ -14,30 +14,52 @@ import {
 } from '@chakra-ui/react'
 import { useForm } from '../hooks/useForm'
 import Rating from './rating'
+import { useDispatch } from 'react-redux'
+import { EditAlbum, StartAddAlbum } from '../actions/albumes'
 
 
-const PopupForm = ({ isOpen, onClose, background, title, artist, year, frontImage, notas, rating }) => {
-  const [inputsValues, handleInputChange] = useForm({
-    fTitle: title,
-    fArtist: artist,
-    fYear: year,
-    fBg: background,
-    fFrontImage: frontImage,
-    fNotas: notas,
-    fRating: rating
+const PopupForm = ({ isOpen, onClose, album, isForCreate }) => {
+  const dispatch = useDispatch()
+  const [inputsValues, handleInputChange, reset] = useForm({
+    fTitle: album.title,
+    fArtist: album.artist,
+    fYear: album.year,
+    fBg: album.bg,
+    fFrontImage: album.frontImage,
+    fNotas: album.notas,
+    fRating: album.rating
   })
 
-  const [ratingValue, setRatingValue] = useState(0)
 
-  const { fTitle, fArtist, fYear, fBg, fFrontImage, fNotas, fRating } = inputsValues
+  const { fTitle, fArtist, fYear, fBg, fFrontImage, fNotas, fRating } = inputsValues 
+  const [ratingValue, setRatingValue] = useState(fRating)
 
   const handleSave = () => {
-    console.log(inputsValues)
-    console.log({
-      ...inputsValues,
-      fRating: ratingValue
-    })
+    dispatch(EditAlbum({
+      id: album.id,
+      title: fTitle,
+      artist: fArtist,
+      year: fYear,
+      bg: fBg,
+      frontImage: fFrontImage,
+      notas: fNotas,
+      rating: ratingValue
+    }))
     onClose()
+  }
+  
+  const handleCreate = () => {
+    dispatch(StartAddAlbum({
+      title: fTitle,
+      artist: fArtist,
+      year: fYear,
+      bg: fBg,
+      frontImage: fFrontImage,
+      notas: fNotas,
+      rating: ratingValue,
+    }))
+    onClose()
+    reset()
   }
 
   return (
@@ -49,14 +71,6 @@ const PopupForm = ({ isOpen, onClose, background, title, artist, year, frontImag
         </ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          <Box
-            h='250px'
-            w='400px'
-            backgroundImage={`url(${background})`}
-            backgroundPosition='center'
-            backgroundSize='cover'
-            backgroundRepeat='no-repeat' 
-          ></Box> 
           <Input mt={3} placeholder='Artista' name='fArtist' value={fArtist} onChange={handleInputChange} />
           <Input mt={3} placeholder='Año' name='fYear' value={fYear} onChange={handleInputChange} />
           <Textarea mt={3} placeholder='Notas' name='fNotas' value={fNotas} onChange={handleInputChange}>
@@ -66,9 +80,11 @@ const PopupForm = ({ isOpen, onClose, background, title, artist, year, frontImag
           <Rating ratingValue={ratingValue} setRatingValue={setRatingValue}/>
         </ModalBody>
         <ModalFooter>
-          <Button onClick={handleSave}>
-            Guardar
-          </Button>
+          {(isForCreate) ?
+            (<Button onClick={handleCreate}>Crear</Button>)
+            :
+            (<Button onClick={handleSave}>Guardar</Button>)
+          } 
         </ModalFooter>
       </ModalContent>
     </Modal> 
@@ -78,13 +94,16 @@ const PopupForm = ({ isOpen, onClose, background, title, artist, year, frontImag
 PopupForm.defaultProps = {
   isOpen: false,
   onClose: () => {},
-  background: '',
-  title: '',
-  artist: '',
-  year: '',
-  frontImage: '',
-  notas: '',
-  rating: ''
+  album: {
+    bg: '',
+    title: '',
+    artist: '',
+    year: '',
+    frontImage: '',
+    notas: '',
+    rating: ''
+  },
+  isForCreate: false
 }
 
 export default PopupForm

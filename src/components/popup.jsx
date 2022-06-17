@@ -18,7 +18,7 @@ import PopupForm from './popup-form'
 import { SetCleanActiveAlbum } from '../actions/albumes'
 
 
-const PopUp = ({ isOpen: isOpenPopUp, onClose: onClosePopUp, background, title, artist, year, frontImage, notas, rating }) => {
+const PopUp = ({ isOpen: isOpenPopUp, onClose: onClosePopUp, album }) => {
   const dispatch = useDispatch()
   const { isOpen, onOpen, onClose } =  useDisclosure()
 
@@ -31,7 +31,7 @@ const PopUp = ({ isOpen: isOpenPopUp, onClose: onClosePopUp, background, title, 
     <Modal isOpen={isOpenPopUp} onClose={handleClosePopUp}>
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader fontSize='2xl'>{title}</ModalHeader>
+        <ModalHeader fontSize='2xl'>{ album.title }</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
           <Box
@@ -43,7 +43,7 @@ const PopUp = ({ isOpen: isOpenPopUp, onClose: onClosePopUp, background, title, 
             <Box
               h='250px'
               w='400px'
-              backgroundImage={`url(${background})`}
+              backgroundImage={`url(${ album.bg })`}
               backgroundPosition='center'
               backgroundSize='cover'
               backgroundRepeat='no-repeat' 
@@ -56,7 +56,7 @@ const PopUp = ({ isOpen: isOpenPopUp, onClose: onClosePopUp, background, title, 
               position='absolute'
               top='130px'
               right='125px'
-              backgroundImage={`url(${frontImage})`}
+              backgroundImage={`url(${ album.frontImage })`}
               backgroundPosition='center'
               backgroundSize='cover'
               backgroundRepeat='no-repeat'
@@ -64,12 +64,12 @@ const PopUp = ({ isOpen: isOpenPopUp, onClose: onClosePopUp, background, title, 
             </Box>
           </Box>
            
-          <Heading as='h1' m={4} size='xs' fontSize='xl' align='center'>{ artist }</Heading>
-          <Text>{title}</Text>
-          <Text>{artist}</Text>
-          <Text>{year}</Text>
-          <Text>{notas}</Text>
-          <Text>{rating}</Text>
+          <Heading as='h1' m={4} size='xs' fontSize='xl' align='center'>{ album.artist }</Heading>
+          <Text>{ album.title }</Text>
+          <Text>{ album.artist }</Text>
+          <Text>{ album.year }</Text>
+          <Text>{ album.notas }</Text>
+          <Text>{ album.rating }</Text>
         </ModalBody>
         <ModalFooter>
           <Button onClick={onOpen}>
@@ -78,13 +78,7 @@ const PopUp = ({ isOpen: isOpenPopUp, onClose: onClosePopUp, background, title, 
           <PopupForm
             isOpen={isOpen}
             onClose={onClose}
-            background={background}
-            title={title}
-            artist={artist}
-            year={year}
-            frontImage={frontImage}
-            notas={notas}
-            rating={rating}
+            album={album} 
           />
         </ModalFooter>
       </ModalContent>

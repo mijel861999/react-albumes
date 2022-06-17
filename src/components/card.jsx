@@ -5,7 +5,7 @@ import PopUp from './popup'
 import { SetActiveAlbum } from '../actions/albumes'
 
 
-const Card = ({ background, title, artist, year, frontImage, notas, rating, album }) => {
+const Card = ({ album }) => {
   const dispatch = useDispatch()
   const { isOpen, onOpen, onClose } =  useDisclosure()
   const handleOpenCard = () => {
@@ -22,7 +22,7 @@ const Card = ({ background, title, artist, year, frontImage, notas, rating, albu
       <Box
         w='97px'
         h='133px'
-        backgroundImage={`url(${background})`}
+        backgroundImage={`url(${ album.bg })`}
         backgroundPosition='center'
         backgroundSize='cover'
         backgroundRepeat='no-repeat'
@@ -32,18 +32,12 @@ const Card = ({ background, title, artist, year, frontImage, notas, rating, albu
         justifyContent='center'
         textAlign='center'
       >
-        <Heading as='h6' size='xs' align='center'>{ title }</Heading>
+        <Heading as='h6' size='xs' align='center'>{ album.title }</Heading>
       </Box>
       <PopUp
         isOpen={isOpen}
         onClose={onClose}
-        background={background}
-        title={title}
-        artist={artist}
-        year={year}
-        frontImage={frontImage}
-        notas={notas}
-        rating={rating}
+        album={album} 
       />
     </Box> 
   )

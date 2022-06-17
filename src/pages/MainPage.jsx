@@ -1,28 +1,17 @@
-import { Box, IconButton, SimpleGrid } from '@chakra-ui/react'
+import { Box, IconButton, SimpleGrid, useDisclosure } from '@chakra-ui/react'
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Card from '../components/Card'
 import { AddIcon } from '@chakra-ui/icons'
-
-const albumes = [
-  {
-    id: 1,
-    title: 'Mr Morales and the big stepperes',
-    artist: 'Kendick Lamar',
-    year: '2020',
-    bg: 'https://m.media-amazon.com/images/I/61Sy94hfLfL._SS500_.jpg',
-    frontImage: 'https://m.media-amazon.com/images/I/61Sy94hfLfL._SS500_.jpg',
-    notas: '',
-    rating: 4,
-  }
-]
+import PopupForm from '../components/popup-form'
 
 const MainPage = () => {
   const { albumsList } = useSelector(state => state.albumes)
+  const { isOpen, onOpen, onClose } =  useDisclosure()
   const dispatch = useDispatch()
   
   const handleCreateAlbum = () => {
-    alert('Create album')
+    onOpen()
   }
 
   return(
@@ -45,16 +34,14 @@ const MainPage = () => {
         {albumsList.map(album => (
           <Card
             key={album.title}
-            background={album.bg}
-            title={album.title}
-            artist={album.artist}
-            year={album.year}
-            frontImage={album.frontImage}
-            notas={album.notas}
-            rating={album.rating}
             album={album}
           />
         ))}
+        <PopupForm 
+          isOpen={isOpen}
+          onClose={onClose}
+          isForCreate={true}
+        />
       </SimpleGrid>
     </Box>
   )

@@ -1,12 +1,23 @@
+import idGenerator from '../helpers/idGenerator'
 import types from '../types/type'
 
-export const AddAlbum = (album) => ({
+export const StartAddAlbum = (album) => {
+  return (dispatch) => {
+    dispatch(AddAlbum({
+      ...album,
+      id: idGenerator()
+    }))
+  }
+}
+
+const AddAlbum = (album) => ({
   type: types.addAlbum,
   payload: album
 })
 
-export const EditAlbum = () => ({
-
+export const EditAlbum = (newAlbumData) => ({
+  type: types.editAlbum,
+  payload: newAlbumData
 })
 
 export const SetActiveAlbum = (album) => ({
