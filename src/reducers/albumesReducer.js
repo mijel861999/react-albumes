@@ -8,7 +8,7 @@ const initialState = {
       artist: 'Kendick Lamar',
       year: '2022',
       bg: 'https://m.media-amazon.com/images/I/61Sy94hfLfL._SS500_.jpg',
-      frontImage: 'https://m.media-amazon.com/images/I/61Sy94hfLfL._SS500_.jpg',
+      frontImage: 'https://cdn.wegow.com/media/artists/kendrick-lamar/kendrick-lamar-1502874912.09.2560x1440.jpeg',
       notas: '',
       rating: 4,
     },
@@ -21,10 +21,58 @@ const initialState = {
       frontImage: 'https://www.queensjournal.ca/sites/default/files/img/story/2021/05/30/theoffseason_1.png',
       notas: '',
       rating: 4
+    },
+    {
+      id: 3,
+      title: 'The Life of Pablo',
+      artist: 'Kanye West',
+      year: '2016',
+      bg: 'https://m.media-amazon.com/images/I/91EJXyuLDOL._AC_SL1500_.jpg',
+      frontImage: 'https://ichef.bbci.co.uk/news/976/cpsprodpb/10CD7/production/_88232886_kanye_season3_getty.jpg',
+      notas: '',
+      rating: 4
+    },
+    {
+      id: 4,
+      title: 'Madvillain',
+      artist: 'MF Doom',
+      year: '2002',
+      bg: 'https://cdn.themedizine.com/2021/01/madvillainy-1536x1024.jpg',
+      frontImage: 'https://i1.sndcdn.com/artworks-000202189202-meblfr-t500x500.jpg',
+      notas: '',
+      rating: 4
+    },
+    {
+      id: 5,
+      title: 'Harlan & Alondra',
+      artist: 'Buddy',
+      year: '2018',
+      bg: 'https://cdn.smehost.net/sonymusiccommx-mxprod/wp-content/uploads/2018/08/BUDDY-HARLAN-ALONDRA.jpg',
+      frontImage: 'https://s3.amazonaws.com/hiphopdx-production/2018/07/180719-buddy-IG-800x600.jpg',
+      notas: '',
+      rating: 4
     }
   ],
   albumActive: {
-  }
+  },
+  customLists: [
+    {
+      id: 1,
+      title: 'Para ducharse',
+      albums: [
+        {
+          id: 1,
+          title: 'Mr Morales and the big stepperes',
+          artist: 'Kendick Lamar',
+          year: '2022',
+          bg: 'https://m.media-amazon.com/images/I/61Sy94hfLfL._SS500_.jpg',
+          frontImage: 'https://m.media-amazon.com/images/I/61Sy94hfLfL._SS500_.jpg',
+          notas: '',
+          rating: 4,
+        }          
+      ]
+    }
+  ]
 }
 
 const albumesReducer = (state = initialState, action) => {
