@@ -16,6 +16,7 @@ import {
 } from '@chakra-ui/react'
 import PopupForm from './popup-form'
 import { SetCleanActiveAlbum } from '../actions/albumes'
+import { StarIcon } from '@chakra-ui/icons'
 
 
 const PopUp = ({ isOpen: isOpenPopUp, onClose: onClosePopUp, album }) => {
@@ -65,11 +66,14 @@ const PopUp = ({ isOpen: isOpenPopUp, onClose: onClosePopUp, album }) => {
           </Box>
            
           <Heading as='h1' m={4} size='xs' fontSize='xl' align='center'>{ album.artist }</Heading>
-          <Text>{ album.title }</Text>
-          <Text>{ album.artist }</Text>
-          <Text>{ album.year }</Text>
-          <Text>{ album.notas }</Text>
-          <Text>{ album.rating }</Text>
+          <Text>Nombre del album: { album.title }</Text>
+          <Text>Artista: { album.artist }</Text>
+          <Text>Año de salida: { album.year }</Text>
+          <Text>Notas pesonales: { album.notas }</Text>
+          <Box display='flex' alignItems='center' justifyContent='center'>
+            <Text size='2xl'>{ album.rating }</Text>
+            <StarIcon size='3xl' m={2}/>
+          </Box> 
         </ModalBody>
         <ModalFooter>
           <Button onClick={onOpen}>
