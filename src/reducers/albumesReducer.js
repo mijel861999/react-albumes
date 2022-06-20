@@ -59,6 +59,7 @@ const initialState = {
     {
       id: 1,
       title: 'Para ducharse',
+      background: 'https://m.media-amazon.com/images/I/61Sy94hfLfL._SS500_.jpg',
       albums: [
         {
           id: 1,
@@ -69,7 +70,44 @@ const initialState = {
           frontImage: 'https://m.media-amazon.com/images/I/61Sy94hfLfL._SS500_.jpg',
           notas: '',
           rating: 4,
-        }          
+        },
+        {
+          id: 5,
+          title: 'Harlan & Alondra',
+          artist: 'Buddy',
+          year: '2018',
+          bg: 'https://cdn.smehost.net/sonymusiccommx-mxprod/wp-content/uploads/2018/08/BUDDY-HARLAN-ALONDRA.jpg',
+          frontImage: 'https://s3.amazonaws.com/hiphopdx-production/2018/07/180719-buddy-IG-800x600.jpg',
+          notas: '',
+          rating: 4
+        }
+      ]
+    },
+    {
+      id: 2,
+      title: 'Para el gym',
+      background: 'https://image-cdn.hypb.st/https%3A%2F%2Fhypebeast.com%2Fimage%2F2021%2F05%2Fj-cole-the-off-season-album-stream-000.jpg?w=960&cbr=1&q=90&fit=max',
+      albums: [
+        {
+          id: 2,
+          title: 'The Off-Season',
+          artist: 'J. Cole',
+          year: '2021',
+          bg: 'https://image-cdn.hypb.st/https%3A%2F%2Fhypebeast.com%2Fimage%2F2021%2F05%2Fj-cole-the-off-season-album-stream-000.jpg?w=960&cbr=1&q=90&fit=max',
+          frontImage: 'https://www.queensjournal.ca/sites/default/files/img/story/2021/05/30/theoffseason_1.png',
+          notas: '',
+          rating: 4
+        },
+        {
+          id: 5,
+          title: 'Harlan & Alondra',
+          artist: 'Buddy',
+          year: '2018',
+          bg: 'https://cdn.smehost.net/sonymusiccommx-mxprod/wp-content/uploads/2018/08/BUDDY-HARLAN-ALONDRA.jpg',
+          frontImage: 'https://s3.amazonaws.com/hiphopdx-production/2018/07/180719-buddy-IG-800x600.jpg',
+          notas: '',
+          rating: 4
+        }
       ]
     }
   ]

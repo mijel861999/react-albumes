@@ -1,19 +1,21 @@
-import { Box } from '@chakra-ui/react'
+import { Box, Container, Heading } from '@chakra-ui/react'
 import React from 'react'
+import Card from '../components/card'
 import { useSelector } from 'react-redux'
+import ListItem from '../components/listItem'
 
 const ListasPage = () => {
   const { customLists } = useSelector(state => state.albumes)
-  console.log(customLists)
   return (
-    <Box p={4}>
-      <div>
+    <Box>
+      <Box>
         {customLists.map(lista => (
-          <div key={lista.id}>
-            <h1>{lista.title}</h1>
-          </div>
+          <ListItem
+            key={lista.id}
+            lista={lista}
+          />
         ))}
-      </div>
+      </Box>
     </Box>
   )
 }
