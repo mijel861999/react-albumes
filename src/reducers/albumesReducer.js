@@ -110,7 +110,8 @@ const initialState = {
         }
       ]
     }
-  ]
+  ],
+  listActive: ''
 }
 
 const albumesReducer = (state = initialState, action) => {
@@ -136,6 +137,11 @@ const albumesReducer = (state = initialState, action) => {
       return {
         ...state,
         albumActive: {}
+      }
+    case types.ActiveList:
+      return {
+        ...state,
+        listActive: action.payload
       }
     default:
       return state

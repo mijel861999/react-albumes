@@ -7,6 +7,7 @@ import OptionsList from '../components/optionsList';
 import ListasPage from '../pages/ListasPage';
 import TopsPage from '../pages/TopsPage';
 import DiscosPage from '../pages/DiscosPage';
+import AlbumItemPage from '../pages/AlbumItemPage';
 
 const AppRouter = () => {
   return (
@@ -31,6 +32,11 @@ const AppRouter = () => {
           <Route
             path='/listas'
             element={<ListasPage />}
+          />
+          <Route
+            exact
+            path='/listas/listActive'
+            element={<AlbumItemPage />}
           />
         </Routes>
       </div>

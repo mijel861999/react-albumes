@@ -2,8 +2,6 @@ import { Box } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import LinkOptions from './linkOptions'
 
-const options = ['discos', 'tops', 'listas']
-
 const OptionsList = () => {
   const [isActive, setActive] = useState('')
 
