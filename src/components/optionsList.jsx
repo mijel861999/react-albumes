@@ -7,7 +7,7 @@ const OptionsList = () => {
 
   return (
     <Box p={4} display='flex' alignItems='center' justifyContent='start'>
-      <LinkOptions redirect='/discos' label='Discos' isActive={isActive} setActive={setActive} />
+      <LinkOptions redirect='/' label='Discos' isActive={isActive} setActive={setActive} />
       <LinkOptions redirect='/tops' label='Tops' isActive={isActive} setActive={setActive} /> 
       <LinkOptions redirect='/listas' label='Listas' isActive={isActive} setActive={setActive} />
     </Box>

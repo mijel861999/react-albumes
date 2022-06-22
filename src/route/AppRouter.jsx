@@ -6,7 +6,6 @@ import Navbar from '../components/navbar'
 import OptionsList from '../components/optionsList';
 import ListasPage from '../pages/ListasPage';
 import TopsPage from '../pages/TopsPage';
-import DiscosPage from '../pages/DiscosPage';
 import AlbumItemPage from '../pages/AlbumItemPage';
 
 const AppRouter = () => {
@@ -21,10 +20,6 @@ const AppRouter = () => {
             path='/*' 
             element={<MainPage />}  
           /> 
-          <Route
-            path='/discos'
-            element={<DiscosPage />}
-          />
           <Route
             path='/tops'
             element={<TopsPage />}
