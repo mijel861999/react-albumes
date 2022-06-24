@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { 
   Modal,
   Heading,
@@ -10,12 +10,20 @@ import {
   Input,
   Box,
   Text,
-  ModalFooter,
-  Button,
+  SimpleGrid,
 } from '@chakra-ui/react'
+import { useForm } from '../hooks/useForm'
+import { useSelector } from 'react-redux'
+import Card from './card'
 
 const PopupList = ({ isOpen, onClose }) => {
-  const [searchedAlbums, setSearchedAlbums] = useState([])
+  // const [searchedAlbums, setSearchedAlbums] = useState([])
+  const [searchInput, handleInputChange] = useForm({
+    searchValue: ''
+  })
+  const { albumsList } = useSelector(state => state.albumes)
+
+  const { searchValue } = searchInput
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
@@ -26,18 +34,22 @@ const PopupList = ({ isOpen, onClose }) => {
       </ModalHeader>
       <ModalCloseButton/>
       <ModalBody>
-        <Input placeholder='Busca tu album' />
-        <Box>
+        <Input
+          placeholder='Busca tu album'
+          name='searchValue'
+          value={searchValue}
+          onChange={handleInputChange}
+        />
+        <SimpleGrid m={6} columns={[2, 2]} gap={5}>
           {
-            (searchedAlbums.length === 0) ? 
-            (
-              <Text m={3}>No hay resultados</Text>
-            ) : 
-            (
-              <Box m={3}>Discos</Box>
-            )
-          } 
-        </Box>
+            albumsList.filter( album => album.title.includes(searchValue)).map((album, index) => (
+              <Card
+                key={index}
+                album={album}
+              />
+            ))
+          }
+        </SimpleGrid>
       </ModalBody>
      </ModalContent>
     </Modal>
