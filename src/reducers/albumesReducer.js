@@ -143,6 +143,30 @@ const albumesReducer = (state = initialState, action) => {
         ...state,
         listActive: action.payload
       }
+    case types.AddAlbumToList:
+      return {
+        ...state,
+        customLists: state.customLists.map(
+          list => (list.id === action.payload.list.id ? ({
+            ...list,
+            albums: [
+              ...list.albums,
+              action.payload.album
+            ]
+          }): list)
+        )
+      }
+    case types.AddAlbumToActiveList:
+      return {
+        ...state,
+        listActive: {
+          ...state.listActive,
+          albums: [
+            ...state.listActive.albums,
+            action.payload
+          ]
+        }
+      }
     default:
       return state
   }

@@ -5,7 +5,7 @@ import PopUp from './popup'
 import { SetActiveAlbum } from '../actions/albumes'
 
 
-const Card = ({ album }) => {
+const Card = ({ album, isForAdd = false }) => {
   const dispatch = useDispatch()
   const { isOpen, onOpen, onClose } =  useDisclosure()
   const handleOpenCard = () => {
@@ -38,6 +38,7 @@ const Card = ({ album }) => {
         isOpen={isOpen}
         onClose={onClose}
         album={album} 
+        isForAdd={isForAdd}
       />
     </Box> 
   )

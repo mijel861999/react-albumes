@@ -46,6 +46,7 @@ const PopupList = ({ isOpen, onClose }) => {
               <Card
                 key={index}
                 album={album}
+                isForAdd={true}
               />
             ))
           }

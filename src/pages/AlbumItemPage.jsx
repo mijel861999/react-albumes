@@ -1,12 +1,12 @@
 import { Box, Heading, SimpleGrid, IconButton, useDisclosure } from '@chakra-ui/react'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import Card from '../components/card'
 import { AddIcon } from '@chakra-ui/icons'
 import PopupList from '../components/popup-list'
 
 const AlbumItemPage = () => {
-  const { listActive } = useSelector(state => state.albumes)
+  const { listActive, albums } = useSelector(state => state.albumes)
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   if(!listActive.id) {
@@ -16,6 +16,10 @@ const AlbumItemPage = () => {
   const handleAddAlbumToList = () => {
     onOpen()
   }
+
+  useEffect(() => {
+    console.log(listActive.albums)
+  }, [listActive.albums])
 
   return(
     <Box>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { 
   Modal,
   ModalOverlay,
@@ -17,15 +17,24 @@ import {
 import PopupForm from './popup-form'
 import { SetCleanActiveAlbum } from '../actions/albumes'
 import { StarIcon } from '@chakra-ui/icons'
+import { AddAlbumToList, AddAlbumToActiveList } from '../actions/albumes.js'
 
 
-const PopUp = ({ isOpen: isOpenPopUp, onClose: onClosePopUp, album }) => {
+const PopUp = ({ isOpen: isOpenPopUp, onClose: onClosePopUp, album, isForAdd }) => {
   const dispatch = useDispatch()
+  const { albumActive, listActive } = useSelector(state => state.albumes)
   const { isOpen, onOpen, onClose } =  useDisclosure()
 
   const handleClosePopUp = () => {
     dispatch(SetCleanActiveAlbum())
     onClosePopUp()
+  }
+
+  const handleAddToList = () => {
+    // TODO: Agregar album a lista
+    console.log(albumActive, listActive)
+    dispatch(AddAlbumToList(albumActive, listActive))
+    dispatch(AddAlbumToActiveList(albumActive))
   }
 
   return (
@@ -76,9 +85,19 @@ const PopUp = ({ isOpen: isOpenPopUp, onClose: onClosePopUp, album }) => {
           </Box> 
         </ModalBody>
         <ModalFooter>
-          <Button onClick={onOpen}>
-            Editar
-          </Button>
+          {
+            (isForAdd) ?
+            (
+              <Button onClick={handleAddToList}>
+                Agregar
+              </Button>
+            ) : 
+            (
+              <Button onClick={onOpen}>
+                Editar
+              </Button>
+            )
+          } 
           <PopupForm
             isOpen={isOpen}
             onClose={onClose}
