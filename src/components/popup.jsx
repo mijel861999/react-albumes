@@ -32,9 +32,10 @@ const PopUp = ({ isOpen: isOpenPopUp, onClose: onClosePopUp, album, isForAdd }) 
 
   const handleAddToList = () => {
     // TODO: Agregar album a lista
-    console.log(albumActive, listActive)
     dispatch(AddAlbumToList(albumActive, listActive))
     dispatch(AddAlbumToActiveList(albumActive))
+    console.log('Close popup')
+    onClosePopUp()
   }
 
   return (

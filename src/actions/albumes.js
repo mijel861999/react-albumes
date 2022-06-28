@@ -47,3 +47,10 @@ export const SetActiveList = (list) => ({
 export const SetCleanActiveList = () => ({
   type: types.setCleanActiveList
 })
+
+export const AddList = (list) => ({
+  type: types.AddList,
+  payload: list
+})
+
+

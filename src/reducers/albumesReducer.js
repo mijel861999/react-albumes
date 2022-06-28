@@ -10,7 +10,7 @@ const initialState = {
       bg: 'https://m.media-amazon.com/images/I/61Sy94hfLfL._SS500_.jpg',
       frontImage: 'https://cdn.wegow.com/media/artists/kendrick-lamar/kendrick-lamar-1502874912.09.2560x1440.jpeg',
       notas: '',
-      rating: 4,
+      rating: 5,
     },
     {
       id: 2,
@@ -20,7 +20,7 @@ const initialState = {
       bg: 'https://image-cdn.hypb.st/https%3A%2F%2Fhypebeast.com%2Fimage%2F2021%2F05%2Fj-cole-the-off-season-album-stream-000.jpg?w=960&cbr=1&q=90&fit=max',
       frontImage: 'https://www.queensjournal.ca/sites/default/files/img/story/2021/05/30/theoffseason_1.png',
       notas: '',
-      rating: 4
+      rating: 2
     },
     {
       id: 3,
@@ -30,7 +30,7 @@ const initialState = {
       bg: 'https://m.media-amazon.com/images/I/91EJXyuLDOL._AC_SL1500_.jpg',
       frontImage: 'https://ichef.bbci.co.uk/news/976/cpsprodpb/10CD7/production/_88232886_kanye_season3_getty.jpg',
       notas: '',
-      rating: 4
+      rating: 5
     },
     {
       id: 4,
@@ -40,7 +40,7 @@ const initialState = {
       bg: 'https://cdn.themedizine.com/2021/01/madvillainy-1536x1024.jpg',
       frontImage: 'https://i1.sndcdn.com/artworks-000202189202-meblfr-t500x500.jpg',
       notas: '',
-      rating: 4
+      rating: 1
     },
     {
       id: 5,
@@ -50,7 +50,7 @@ const initialState = {
       bg: 'https://cdn.smehost.net/sonymusiccommx-mxprod/wp-content/uploads/2018/08/BUDDY-HARLAN-ALONDRA.jpg',
       frontImage: 'https://s3.amazonaws.com/hiphopdx-production/2018/07/180719-buddy-IG-800x600.jpg',
       notas: '',
-      rating: 4
+      rating: 3
     }
   ],
   albumActive: {
@@ -166,6 +166,14 @@ const albumesReducer = (state = initialState, action) => {
             action.payload
           ]
         }
+      }
+    case types.AddList:
+      return {
+        ...state,
+        customLists: [
+          ...state.customLists,
+          action.payload
+        ]
       }
     default:
       return state
