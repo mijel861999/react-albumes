@@ -29,14 +29,14 @@ export const SetCleanActiveAlbum = () => ({
   type: types.setCleanActiveAlbum
 })
 
-export const AddAlbumToList = (album, list) => ({
+export const AddAlbumToList = (title, list) => ({
   type: types.AddAlbumToList,
-  payload: {album, list}
+  payload: {title, list}
 })
 
-export const AddAlbumToActiveList = (album) => ({
+export const AddAlbumToActiveList = (title) => ({
   type: types.AddAlbumToActiveList,
-  payload: album
+  payload: title
 })
 
 export const SetActiveList = (list) => ({
@@ -53,4 +53,16 @@ export const AddList = (list) => ({
   payload: list
 })
 
+export const StartEditTitleInList = (newTitle) => {
+  return (dispatch, getState) => {
+    const { listActive, albumActive } = getState().albumes
+    const listId = listActive.id
+    const albumId = albumActive.title
+    dispatch(EditTitleInList({ listId, albumId, newTitle })) 
+  }
+}
 
+const EditTitleInList = (event) => ({
+  type: types.EditTitleInList,
+  payload: event 
+})

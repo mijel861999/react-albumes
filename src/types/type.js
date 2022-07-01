@@ -10,7 +10,8 @@ const types = {
   setCleanActiveList: '[albumes] set clean active album',
   AddAlbumToList: '[albumes] add album to list',
   AddAlbumToActiveList: '[albumes] add album to active list',
-  AddList: '[albumes] add list'
+  AddList: '[albumes] add list',
+  EditTitleInList: '[albumes] edit title in list'
 }
 
 export default types

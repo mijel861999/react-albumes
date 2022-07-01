@@ -57,57 +57,21 @@ const initialState = {
   },
   customLists: [
     {
-      id: 1,
+      id: 'Para ducharse',
       title: 'Para ducharse',
       background: 'https://m.media-amazon.com/images/I/61Sy94hfLfL._SS500_.jpg',
-      albums: [
-        {
-          id: 1,
-          title: 'Mr Morales and the big stepperes',
-          artist: 'Kendick Lamar',
-          year: '2022',
-          bg: 'https://m.media-amazon.com/images/I/61Sy94hfLfL._SS500_.jpg',
-          frontImage: 'https://m.media-amazon.com/images/I/61Sy94hfLfL._SS500_.jpg',
-          notas: '',
-          rating: 4,
-        },
-        {
-          id: 5,
-          title: 'Harlan & Alondra',
-          artist: 'Buddy',
-          year: '2018',
-          bg: 'https://cdn.smehost.net/sonymusiccommx-mxprod/wp-content/uploads/2018/08/BUDDY-HARLAN-ALONDRA.jpg',
-          frontImage: 'https://s3.amazonaws.com/hiphopdx-production/2018/07/180719-buddy-IG-800x600.jpg',
-          notas: '',
-          rating: 4
-        }
+      albumsListTitles: [
+        'Mr Morales and the big stepperes',
+        'Harlan & Alondra'
       ]
     },
     {
-      id: 2,
+      id: 'Para el gym',
       title: 'Para el gym',
       background: 'https://image-cdn.hypb.st/https%3A%2F%2Fhypebeast.com%2Fimage%2F2021%2F05%2Fj-cole-the-off-season-album-stream-000.jpg?w=960&cbr=1&q=90&fit=max',
-      albums: [
-        {
-          id: 2,
-          title: 'The Off-Season',
-          artist: 'J. Cole',
-          year: '2021',
-          bg: 'https://image-cdn.hypb.st/https%3A%2F%2Fhypebeast.com%2Fimage%2F2021%2F05%2Fj-cole-the-off-season-album-stream-000.jpg?w=960&cbr=1&q=90&fit=max',
-          frontImage: 'https://www.queensjournal.ca/sites/default/files/img/story/2021/05/30/theoffseason_1.png',
-          notas: '',
-          rating: 4
-        },
-        {
-          id: 5,
-          title: 'Harlan & Alondra',
-          artist: 'Buddy',
-          year: '2018',
-          bg: 'https://cdn.smehost.net/sonymusiccommx-mxprod/wp-content/uploads/2018/08/BUDDY-HARLAN-ALONDRA.jpg',
-          frontImage: 'https://s3.amazonaws.com/hiphopdx-production/2018/07/180719-buddy-IG-800x600.jpg',
-          notas: '',
-          rating: 4
-        }
+      albumsListTitles: [
+        'The Off-Season',
+        'Harlan & Alondra'
       ]
     }
   ],
@@ -149,9 +113,9 @@ const albumesReducer = (state = initialState, action) => {
         customLists: state.customLists.map(
           list => (list.id === action.payload.list.id ? ({
             ...list,
-            albums: [
-              ...list.albums,
-              action.payload.album
+            albumsListTitles: [
+              ...list.albumsListTitles,
+              action.payload.title
             ]
           }): list)
         )
@@ -161,8 +125,8 @@ const albumesReducer = (state = initialState, action) => {
         ...state,
         listActive: {
           ...state.listActive,
-          albums: [
-            ...state.listActive.albums,
+          albumsListTitles: [
+            ...state.listActive.albumsListTitles,
             action.payload
           ]
         }
@@ -174,6 +138,24 @@ const albumesReducer = (state = initialState, action) => {
           ...state.customLists,
           action.payload
         ]
+      }
+    case types.EditTitleInList:
+      return {
+        ...state,
+        customLists: state.customLists.map(list => (
+          (list.id === action.payload.listId ? ({
+            ...list,
+            albumsListTitles: list.albumsListTitles.map((albumTitle) => (
+              (albumTitle === action.payload.albumId ? action.payload.newTitle : albumTitle)
+            ))
+          }) : (list)))
+        ),
+        listActive: {
+          ...state.listActive,
+          albumsListTitles: state.listActive.albumsListTitles.map((albumTitle) =>
+            (albumTitle === action.payload.albumId ? action.payload.newTitle: albumTitle) 
+          )
+        }
       }
     default:
       return state

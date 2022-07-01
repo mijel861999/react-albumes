@@ -4,7 +4,6 @@ import { Box, Heading, useDisclosure } from '@chakra-ui/react'
 import PopUp from './popup'
 import { SetActiveAlbum } from '../actions/albumes'
 
-
 const Card = ({ album, isForAdd = false }) => {
   const dispatch = useDispatch()
   const { isOpen, onOpen, onClose } =  useDisclosure()
@@ -27,12 +26,13 @@ const Card = ({ album, isForAdd = false }) => {
         backgroundSize='cover'
         backgroundRepeat='no-repeat'
         filter='auto'
+        p={3}
         display='Flex'
         alignItems='center'
         justifyContent='center'
         textAlign='center'
       >
-        <Heading as='h6' size='xs' align='center'>{ album.title }</Heading>
+        <h2 fontSize='12px' size='xs' align='center'>{ album.title }</h2>
       </Box>
       <PopUp
         isOpen={isOpen}

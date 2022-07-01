@@ -1,4 +1,4 @@
-import { Box, Heading, SimpleGrid, IconButton, useDisclosure } from '@chakra-ui/react'
+import { Box, Heading, SimpleGrid, IconButton, useDisclosure, Text } from '@chakra-ui/react'
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import Card from '../components/card'
@@ -6,8 +6,10 @@ import { AddIcon } from '@chakra-ui/icons'
 import PopupList from '../components/popup-list'
 
 const AlbumItemPage = () => {
-  const { listActive, albums } = useSelector(state => state.albumes)
+  const { listActive, albumsList } = useSelector(state => state.albumes)
   const { isOpen, onOpen, onClose } = useDisclosure()
+
+  const { albumsListTitles } = listActive
 
   if(!listActive.id) {
     return <Box>No hay ninguna lista seleccionada</Box>
@@ -18,8 +20,8 @@ const AlbumItemPage = () => {
   }
 
   useEffect(() => {
-    console.log(listActive.albums)
-  }, [listActive.albums])
+    console.log(listActive.albumsListTitles)
+  }, [listActive.albumsListTitles])
 
   return(
     <Box>
@@ -32,7 +34,7 @@ const AlbumItemPage = () => {
         backgroundRepeat='no-repeat'
       >
       </Box>
-      <Heading m={4} align='center'>{listActive.title}</Heading>
+      <Text fontSize='2xl' fontWeight='bold' m={4} align='center'>{listActive.title}</Text>
       <Box  p={4} w='100%'>
       <SimpleGrid w='100%' align='center' columns={[2, 3, 5]} gap={6}>
         <Box
@@ -50,12 +52,14 @@ const AlbumItemPage = () => {
           >
           </IconButton>
         </Box> 
-        {listActive.albums.map(album => (
-          <Card
-            key={album.title}
-            album={album}
-          />
-        ))}
+        {
+          albumsList.filter(album => albumsListTitles.includes(album.title)).map(album => (
+            <Card
+              key={album.title}
+              album={album}
+            />
+          ))
+        }
         <PopupList 
           isOpen={isOpen} 
           onClose={onClose}

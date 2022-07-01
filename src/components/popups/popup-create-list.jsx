@@ -30,7 +30,7 @@ const PopupCreateList = ({ isOpen, onClose }) => {
       id: title,
       title,
       background,
-      albums: []
+      albumsListTitles: []
     }))
     onClose()
   }
@@ -40,7 +40,7 @@ const PopupCreateList = ({ isOpen, onClose }) => {
      <ModalOverlay /> 
      <ModalContent>
       <ModalHeader>
-        <Heading>Crea tu lista personalizada</Heading>
+        Crea tu lista personalizada
       </ModalHeader>
       <ModalCloseButton/>
       <ModalBody>

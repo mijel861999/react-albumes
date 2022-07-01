@@ -15,7 +15,7 @@ import {
 import { useForm } from '../hooks/useForm'
 import Rating from './rating'
 import { useDispatch } from 'react-redux'
-import { EditAlbum, StartAddAlbum } from '../actions/albumes'
+import { EditAlbum, StartAddAlbum, StartEditTitleInList } from '../actions/albumes'
 
 
 const PopupForm = ({ isOpen, onClose, album, isForCreate }) => {
@@ -35,6 +35,7 @@ const PopupForm = ({ isOpen, onClose, album, isForCreate }) => {
   const [ratingValue, setRatingValue] = useState(fRating)
 
   const handleSave = () => {
+    dispatch(StartEditTitleInList(fTitle))
     dispatch(EditAlbum({
       id: album.id,
       title: fTitle,
@@ -63,21 +64,55 @@ const PopupForm = ({ isOpen, onClose, album, isForCreate }) => {
   }
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+    >
       <ModalOverlay />
       <ModalContent>
         <ModalHeader m={5}>
-          <Input placeholder='Titulo' name='fTitle' value={fTitle} onChange={handleInputChange} />
+          <Input
+            placeholder='Titulo'
+            name='fTitle'
+            value={fTitle}
+            onChange={handleInputChange}
+          />
         </ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          <Input mt={3} placeholder='Artista' name='fArtist' value={fArtist} onChange={handleInputChange} />
-          <Input mt={3} placeholder='Año' name='fYear' value={fYear} onChange={handleInputChange} />
-          <Textarea mt={3} placeholder='Notas' name='fNotas' value={fNotas} onChange={handleInputChange}>
-          </Textarea>
-          <Input mt={3} placeholder='Url de alguna portada que te guste' name='fFrontImage' value={fFrontImage} onChange={handleInputChange} />
-          <Input mt={3} placeholder='Url de alguna tapa del álbum que te guste' name='fBg' value={fBg} onChange={handleInputChange} />
-          <Rating ratingValue={ratingValue} setRatingValue={setRatingValue}/>
+          <Input
+            mt={3}
+            placeholder='Artista'
+            name='fArtist'
+            value={fArtist}
+            onChange={handleInputChange}
+          />
+          <Input
+            mt={3}
+            placeholder='Año'
+            name='fYear'
+            value={fYear}
+            onChange={handleInputChange}
+          />
+          <Textarea mt={3} placeholder='Notas' name='fNotas' value={fNotas} onChange={handleInputChange} />
+          <Input
+            mt={3}
+            placeholder='Url de alguna portada que te guste'
+            name='fFrontImage'
+            value={fFrontImage}
+            onChange={handleInputChange}
+          />
+          <Input
+            mt={3}
+            placeholder='Url de alguna tapa del álbum que te guste'
+            name='fBg'
+            value={fBg}
+            onChange={handleInputChange}
+          />
+          <Rating
+            ratingValue={ratingValue}
+            setRatingValue={setRatingValue}
+          />
         </ModalBody>
         <ModalFooter>
           {(isForCreate) ?

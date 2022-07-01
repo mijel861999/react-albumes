@@ -30,7 +30,7 @@ const PopupList = ({ isOpen, onClose }) => {
      <ModalOverlay /> 
      <ModalContent>
       <ModalHeader>
-        <Heading>Busca tu album para esta lista</Heading>
+        <Text>Busca tu album para esta lista</Text>
       </ModalHeader>
       <ModalCloseButton/>
       <ModalBody>

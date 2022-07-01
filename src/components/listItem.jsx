@@ -31,7 +31,7 @@ const ListItem = ({ lista }) => {
         textAlign='center'
         cursor='pointer'
       >
-        <Heading as='h6' fontWeight='black' size='xl' align='center'>{ lista.title }</Heading> 
+        <h2 fontSize='4xl' fontWeight='black' align='center'>{ lista.title }</h2> 
       </Box>
     </Link>
   ) 

@@ -5,10 +5,14 @@ const styles = {
   global: props => ({
     body: {
       bg: mode('#F2F2F2', '#1A2601')(props),
-      color: mode('#1A2601', '#F2F2F2')(props)
+      color: mode('#1A2601','#F2F2F2')(props)
     },
     h1: {
       fontWeight: 'bold'
+    },
+    h2: {
+      color: 'white',
+      fontWeight: 'bold',
     }
   })
 }
