@@ -12,13 +12,13 @@ import {
   Input,
   Textarea
 } from '@chakra-ui/react'
-import { useForm } from '../hooks/useForm'
-import Rating from './rating'
-import { useDispatch } from 'react-redux'
-import { EditAlbum, StartAddAlbum, StartEditTitleInList } from '../actions/albumes'
+import { useForm } from '../../hooks/useForm'
+import Rating from '../rating'
+import { useDispatch, useSelector } from 'react-redux'
+import { EditAlbum, StartAddAlbum } from '../../actions/albumes.js'
 
 
-const PopupForm = ({ isOpen, onClose, album, isForCreate }) => {
+const PopupFormAlbum = ({ isOpen, onClose, album, isForCreate }) => {
   const dispatch = useDispatch()
   const [inputsValues, handleInputChange, reset] = useForm({
     fTitle: album.title,
@@ -29,36 +29,32 @@ const PopupForm = ({ isOpen, onClose, album, isForCreate }) => {
     fNotas: album.notas,
     fRating: album.rating
   })
-
-
   const { fTitle, fArtist, fYear, fBg, fFrontImage, fNotas, fRating } = inputsValues 
   const [ratingValue, setRatingValue] = useState(fRating)
 
-  const handleSave = () => {
-    dispatch(StartEditTitleInList(fTitle))
-    dispatch(EditAlbum({
-      id: album.id,
-      title: fTitle,
-      artist: fArtist,
-      year: fYear,
-      bg: fBg,
-      frontImage: fFrontImage,
-      notas: fNotas,
-      rating: ratingValue
-    }))
-    onClose()
-  }
-  
-  const handleCreate = () => {
-    dispatch(StartAddAlbum({
-      title: fTitle,
-      artist: fArtist,
-      year: fYear,
-      bg: fBg,
-      frontImage: fFrontImage,
-      notas: fNotas,
-      rating: ratingValue,
-    }))
+  const handleClick = () => {
+    if (isForCreate)  {
+      dispatch(StartAddAlbum({
+        title: fTitle,
+        artist: fArtist,
+        year: fYear,
+        bg: fBg,
+        frontImage: fFrontImage,
+        notas: fNotas,
+        rating: ratingValue,
+      }))
+    } else {
+      dispatch(EditAlbum({
+        id: album.id,
+        title: fTitle,
+        artist: fArtist,
+        year: fYear,
+        bg: fBg,
+        frontImage: fFrontImage,
+        notas: fNotas,
+        rating: ratingValue
+      }))
+    }
     onClose()
     reset()
   }
@@ -116,9 +112,9 @@ const PopupForm = ({ isOpen, onClose, album, isForCreate }) => {
         </ModalBody>
         <ModalFooter>
           {(isForCreate) ?
-            (<Button onClick={handleCreate}>Crear</Button>)
+            (<Button onClick={handleClick}>Crear</Button>)
             :
-            (<Button onClick={handleSave}>Guardar</Button>)
+            (<Button onClick={handleClick}>Guardar</Button>)
           } 
         </ModalFooter>
       </ModalContent>
@@ -126,7 +122,7 @@ const PopupForm = ({ isOpen, onClose, album, isForCreate }) => {
   )
 }
 
-PopupForm.defaultProps = {
+PopupFormAlbum.defaultProps = {
   isOpen: false,
   onClose: () => {},
   album: {
@@ -141,4 +137,5 @@ PopupForm.defaultProps = {
   isForCreate: false
 }
 
-export default PopupForm
+export default PopupFormAlbum
+

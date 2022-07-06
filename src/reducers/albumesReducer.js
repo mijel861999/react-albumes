@@ -3,7 +3,7 @@ import types from '../types/type'
 const initialState = {
   albumsList: [
     {
-      id: 1,
+      id: '1',
       title: 'Mr Morales and the big stepperes',
       artist: 'Kendick Lamar',
       year: '2022',
@@ -13,7 +13,7 @@ const initialState = {
       rating: 5,
     },
     {
-      id: 2,
+      id: '2',
       title: 'The Off-Season',
       artist: 'J. Cole',
       year: '2021',
@@ -23,7 +23,7 @@ const initialState = {
       rating: 2
     },
     {
-      id: 3,
+      id: '3',
       title: 'The Life of Pablo',
       artist: 'Kanye West',
       year: '2016',
@@ -33,7 +33,7 @@ const initialState = {
       rating: 5
     },
     {
-      id: 4,
+      id: '4',
       title: 'Madvillain',
       artist: 'MF Doom',
       year: '2002',
@@ -43,7 +43,7 @@ const initialState = {
       rating: 1
     },
     {
-      id: 5,
+      id: '5',
       title: 'Harlan & Alondra',
       artist: 'Buddy',
       year: '2018',
@@ -60,18 +60,18 @@ const initialState = {
       id: 'Para ducharse',
       title: 'Para ducharse',
       background: 'https://m.media-amazon.com/images/I/61Sy94hfLfL._SS500_.jpg',
-      albumsListTitles: [
-        'Mr Morales and the big stepperes',
-        'Harlan & Alondra'
+      albumsIds: [
+        '3',
+        '4'
       ]
     },
     {
       id: 'Para el gym',
       title: 'Para el gym',
       background: 'https://image-cdn.hypb.st/https%3A%2F%2Fhypebeast.com%2Fimage%2F2021%2F05%2Fj-cole-the-off-season-album-stream-000.jpg?w=960&cbr=1&q=90&fit=max',
-      albumsListTitles: [
-        'The Off-Season',
-        'Harlan & Alondra'
+      albumsIds: [
+        '1',
+        '2'
       ]
     }
   ],
@@ -107,26 +107,31 @@ const albumesReducer = (state = initialState, action) => {
         ...state,
         listActive: action.payload
       }
-    case types.AddAlbumToList:
+    case types.setCleanActiveList:
+      return {
+        ...state,
+        listActive: ''
+      }
+    case types.addAlbumToList:
       return {
         ...state,
         customLists: state.customLists.map(
           list => (list.id === action.payload.list.id ? ({
             ...list,
-            albumsListTitles: [
-              ...list.albumsListTitles,
-              action.payload.title
+            albumsIds: [
+              ...list.albumsIds,
+              action.payload.id
             ]
           }): list)
         )
       }
-    case types.AddAlbumToActiveList:
+    case types.addAlbumToActiveList:
       return {
         ...state,
         listActive: {
           ...state.listActive,
-          albumsListTitles: [
-            ...state.listActive.albumsListTitles,
+          albumsIds: [
+            ...state.listActive.albumsIds,
             action.payload
           ]
         }

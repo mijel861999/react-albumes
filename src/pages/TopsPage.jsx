@@ -17,13 +17,13 @@ const TopsPage = () => {
     >
       {
         orderAlbums.map((album, index) => (
-          <Box>
+          <Box key={index}>
             <Text m={4} fontSize='3xl'>
               {index + 1}
             </Text>
             <Card 
-              key={album.title} 
               album={album}
+              isForAction={false}
             />
           </Box> 
         ))

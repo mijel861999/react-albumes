@@ -1,10 +1,11 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { Box, Heading, useDisclosure } from '@chakra-ui/react'
-import PopUp from './popup'
-import { SetActiveAlbum } from '../actions/albumes'
 
-const Card = ({ album, isForAdd = false }) => {
+import { SetActiveAlbum } from '../actions/albumes'
+import PopUp from '../components/popups/popup'
+
+const Card = ({ album, isForAction = true }) => {
   const dispatch = useDispatch()
   const { isOpen, onOpen, onClose } =  useDisclosure()
   const handleOpenCard = () => {
@@ -38,7 +39,7 @@ const Card = ({ album, isForAdd = false }) => {
         isOpen={isOpen}
         onClose={onClose}
         album={album} 
-        isForAdd={isForAdd}
+        isForAction={isForAction}
       />
     </Box> 
   )

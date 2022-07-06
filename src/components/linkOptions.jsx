@@ -1,13 +1,17 @@
 import React, { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { Box, useColorMode } from '@chakra-ui/react'
+import { useDispatch } from 'react-redux'
+import { SetCleanActiveList } from '../actions/albumes'
 
 const LinkOptions = ({ redirect, label, isActive, setActive}) => {
   const boxLink = useRef(null)
   const { colorMode } = useColorMode()
+  const dispatch = useDispatch()
 
   const handleClick = (e) => {
     e.preventDefault()
+    dispatch(SetCleanActiveList())
     setActive(label)
     boxLink.current.click()
   }

@@ -9,7 +9,8 @@ const AlbumItemPage = () => {
   const { listActive, albumsList } = useSelector(state => state.albumes)
   const { isOpen, onOpen, onClose } = useDisclosure()
 
-  const { albumsListTitles } = listActive
+  const { albumsIds } = listActive
+  console.log(albumsIds)
 
   if(!listActive.id) {
     return <Box>No hay ninguna lista seleccionada</Box>
@@ -20,8 +21,8 @@ const AlbumItemPage = () => {
   }
 
   useEffect(() => {
-    console.log(listActive.albumsListTitles)
-  }, [listActive.albumsListTitles])
+    console.log(listActive.albumsIds)
+  }, [listActive.albumsIds])
 
   return(
     <Box>
@@ -53,10 +54,11 @@ const AlbumItemPage = () => {
           </IconButton>
         </Box> 
         {
-          albumsList.filter(album => albumsListTitles.includes(album.title)).map(album => (
+          albumsList.filter(album => albumsIds.includes(album.id)).map(album => (
             <Card
               key={album.title}
               album={album}
+              isForAction={false}
             />
           ))
         }

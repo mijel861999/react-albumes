@@ -14,31 +14,32 @@ import {
   useDisclosure,
   Text
 } from '@chakra-ui/react'
-import PopupForm from './popup-form'
-import { SetCleanActiveAlbum } from '../actions/albumes'
 import { StarIcon } from '@chakra-ui/icons'
-import { AddAlbumToList, AddAlbumToActiveList } from '../actions/albumes.js'
+
+import { SetCleanActiveAlbum, AddAlbumToList, AddAlbumToActiveList } from '../../actions/albumes'
+
+import PopupFormAlbum from './popup-form-album'
+import ButtonsPopup from '../buttons/buttons-popup'
 
 
-const PopUp = ({ isOpen: isOpenPopUp, onClose: onClosePopUp, album, isForAdd }) => {
+const PopUp = ({ isOpen, onClose, album, isForAction }) => {
   const dispatch = useDispatch()
   const { albumActive, listActive } = useSelector(state => state.albumes)
-  const { isOpen, onOpen, onClose } =  useDisclosure()
 
   const handleClosePopUp = () => {
     dispatch(SetCleanActiveAlbum())
-    onClosePopUp()
+    onClose()
   }
 
   const handleAddToList = () => {
-    // TODO: Agregar album a lista
-    dispatch(AddAlbumToList(albumActive.title, listActive))
-    dispatch(AddAlbumToActiveList(albumActive.title))
-    onClosePopUp()
+    console.log('Add to list')
+    dispatch(AddAlbumToList(albumActive.id, listActive))
+    dispatch(AddAlbumToActiveList(albumActive.id))
+    onClose()
   }
 
   return (
-    <Modal isOpen={isOpenPopUp} onClose={handleClosePopUp}>
+    <Modal isOpen={isOpen} onClose={handleClosePopUp}>
       <ModalOverlay />
       <ModalContent>
         <ModalHeader fontSize='2xl'>{ album.title }</ModalHeader>
@@ -86,23 +87,12 @@ const PopUp = ({ isOpen: isOpenPopUp, onClose: onClosePopUp, album, isForAdd }) 
         </ModalBody>
         <ModalFooter>
           {
-            (isForAdd) ?
-            (
-              <Button onClick={handleAddToList}>
-                Agregar
-              </Button>
-            ) : 
-            (
-              <Button onClick={onOpen}>
-                Editar
-              </Button>
-            )
-          } 
-          <PopupForm
-            isOpen={isOpen}
-            onClose={onClose}
-            album={album} 
-          />
+            (isForAction) &&
+              <ButtonsPopup
+                handleAddToList={handleAddToList}
+                album={album}
+              />
+          }
         </ModalFooter>
       </ModalContent>
     </Modal>
@@ -110,3 +100,4 @@ const PopUp = ({ isOpen: isOpenPopUp, onClose: onClosePopUp, album, isForAdd }) 
 }
 
 export default PopUp
+

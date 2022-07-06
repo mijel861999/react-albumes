@@ -1,9 +1,9 @@
-import { Box, IconButton, SimpleGrid, useDisclosure } from '@chakra-ui/react'
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import Card from '../components/Card'
+import { Box, IconButton, SimpleGrid, useDisclosure } from '@chakra-ui/react'
 import { AddIcon } from '@chakra-ui/icons'
-import PopupForm from '../components/popup-form'
+import Card from '../components/Card'
+import PopupFormAlbum from '../components/popups/popup-form-album'
 
 const MainPage = () => {
   const { albumsList } = useSelector(state => state.albumes)
@@ -37,7 +37,7 @@ const MainPage = () => {
             album={album}
           />
         ))}
-        <PopupForm 
+        <PopupFormAlbum
           isOpen={isOpen}
           onClose={onClose}
           isForCreate={true}
