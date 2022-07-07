@@ -24,13 +24,12 @@ const PopupCreateList = ({ isOpen, onClose }) => {
   const { title, background } = formValues
 
   const handleAddList = () => {
-    console.log(title, background)
     reset()
     dispatch(AddList({
       id: title,
       title,
       background,
-      albumsListTitles: []
+      albumsIds: []
     }))
     onClose()
   }

@@ -102,7 +102,7 @@ const albumesReducer = (state = initialState, action) => {
         ...state,
         albumActive: {}
       }
-    case types.ActiveList:
+    case types.activeList:
       return {
         ...state,
         listActive: action.payload
@@ -136,31 +136,13 @@ const albumesReducer = (state = initialState, action) => {
           ]
         }
       }
-    case types.AddList:
+    case types.addList:
       return {
         ...state,
         customLists: [
           ...state.customLists,
           action.payload
         ]
-      }
-    case types.EditTitleInList:
-      return {
-        ...state,
-        customLists: state.customLists.map(list => (
-          (list.id === action.payload.listId ? ({
-            ...list,
-            albumsListTitles: list.albumsListTitles.map((albumTitle) => (
-              (albumTitle === action.payload.albumId ? action.payload.newTitle : albumTitle)
-            ))
-          }) : (list)))
-        ),
-        listActive: {
-          ...state.listActive,
-          albumsListTitles: state.listActive.albumsListTitles.map((albumTitle) =>
-            (albumTitle === action.payload.albumId ? action.payload.newTitle: albumTitle) 
-          )
-        }
       }
     default:
       return state

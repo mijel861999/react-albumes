@@ -1,9 +1,9 @@
-import { Box, Button, Container, Heading, useDisclosure } from '@chakra-ui/react'
 import React from 'react'
-import Card from '../components/card'
 import { useSelector } from 'react-redux'
+import { Box, Button, Container, Heading, useDisclosure } from '@chakra-ui/react'
 import ListItem from '../components/listItem'
-import PopupCreateList from '../components/popups/popup-create-list.jsx'
+import PopupCreateList from '../components/popups/popup-create-list'
+import Card from '../components/card'
 
 const ListasPage = () => {
   const { customLists } = useSelector(state => state.albumes)
@@ -11,7 +11,6 @@ const ListasPage = () => {
 
 
   const AddList = () => {
-    console.log('Agregar lista')
     onOpen()
   }
 

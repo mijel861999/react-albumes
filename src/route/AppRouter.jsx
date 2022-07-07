@@ -1,9 +1,9 @@
 import React from 'react'
 import { Route,  BrowserRouter as Router, Routes } from 'react-router-dom';
 
+import OptionsList from '../components/header/optionsList';
+import Navbar from '../components/header/navbar'
 import MainPage from '../pages/MainPage'
-import Navbar from '../components/navbar'
-import OptionsList from '../components/optionsList';
 import ListasPage from '../pages/ListasPage';
 import TopsPage from '../pages/TopsPage';
 import AlbumItemPage from '../pages/AlbumItemPage';

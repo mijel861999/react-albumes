@@ -1,6 +1,6 @@
-import { Box } from '@chakra-ui/react'
-import { Link } from 'react-router-dom'
 import React from 'react'
+import { Link } from 'react-router-dom'
+import { Box } from '@chakra-ui/react'
 import ThemeToggleButton from './themeToggleButton'
 import SearchButtonInput from './searchButtonInput'
 

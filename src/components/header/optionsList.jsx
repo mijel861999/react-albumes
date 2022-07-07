@@ -1,5 +1,5 @@
-import { Box } from '@chakra-ui/react'
 import React, { useState } from 'react'
+import { Box } from '@chakra-ui/react'
 import LinkOptions from './linkOptions'
 
 const OptionsList = () => {

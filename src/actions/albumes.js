@@ -42,7 +42,7 @@ export const AddAlbumToActiveList = (id) => ({
 })
 
 export const SetActiveList = (list) => ({
-  type: types.ActiveList,
+  type: types.activeList,
   payload: list
 })
 
@@ -51,20 +51,7 @@ export const SetCleanActiveList = () => ({
 })
 
 export const AddList = (list) => ({
-  type: types.AddList,
+  type: types.addList,
   payload: list
 })
 
-export const StartEditTitleInList = (newTitle) => {
-  return (dispatch, getState) => {
-    const { listActive, albumActive } = getState().albumes
-    const listId = listActive.id
-    const albumId = albumActive.title
-    dispatch(EditTitleInList({ listId, albumId, newTitle })) 
-  }
-}
-
-const EditTitleInList = (event) => ({
-  type: types.EditTitleInList,
-  payload: event 
-})

@@ -1,4 +1,5 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { 
   Modal,
   Heading,
@@ -12,12 +13,10 @@ import {
   Text,
   SimpleGrid,
 } from '@chakra-ui/react'
-import { useForm } from '../hooks/useForm'
-import { useSelector } from 'react-redux'
-import Card from './card'
+import { useForm } from '../../hooks/useForm'
+import Card from '../card'
 
 const PopupList = ({ isOpen, onClose }) => {
-  // const [searchedAlbums, setSearchedAlbums] = useState([])
   const [searchInput, handleInputChange] = useForm({
     searchValue: ''
   })
@@ -58,3 +57,4 @@ const PopupList = ({ isOpen, onClose }) => {
 }
 
 export default PopupList
+

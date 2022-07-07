@@ -1,16 +1,14 @@
-import { Box, Heading, SimpleGrid, IconButton, useDisclosure, Text } from '@chakra-ui/react'
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import Card from '../components/card'
+import { Box, Heading, SimpleGrid, IconButton, useDisclosure, Text } from '@chakra-ui/react'
 import { AddIcon } from '@chakra-ui/icons'
-import PopupList from '../components/popup-list'
+import Card from '../components/card'
+import PopupList from '../components/popups/popup-list'
 
 const AlbumItemPage = () => {
   const { listActive, albumsList } = useSelector(state => state.albumes)
   const { isOpen, onOpen, onClose } = useDisclosure()
-
   const { albumsIds } = listActive
-  console.log(albumsIds)
 
   if(!listActive.id) {
     return <Box>No hay ninguna lista seleccionada</Box>
@@ -19,10 +17,6 @@ const AlbumItemPage = () => {
   const handleAddAlbumToList = () => {
     onOpen()
   }
-
-  useEffect(() => {
-    console.log(listActive.albumsIds)
-  }, [listActive.albumsIds])
 
   return(
     <Box>
