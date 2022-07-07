@@ -9,8 +9,6 @@ const ListasPage = () => {
   const { customLists } = useSelector(state => state.albumes)
   const { isOpen, onOpen, onClose } =  useDisclosure()
 
-  console.log(!customLists)
-
   const AddList = () => {
     onOpen()
   }
