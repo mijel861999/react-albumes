@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { SetActiveList } from '../actions/albumes'
 import { Box, Heading } from '@chakra-ui/react'
+import { SetActiveList } from '../actions/albumes'
 
 const ListItem = ({ lista }) => {
   const dispatch = useDispatch()
@@ -14,6 +14,7 @@ const ListItem = ({ lista }) => {
   return (
     <Link
       to='/listas/listActive'
+      w='100%'
     >
       <Box
         onClick={handleSetActiveList}
@@ -31,7 +32,7 @@ const ListItem = ({ lista }) => {
         textAlign='center'
         cursor='pointer'
       >
-        <h2 fontSize='4xl' fontWeight='black' align='center'>{ lista.title }</h2> 
+        <h2 fontSize='4xl' fontWeight='black' align='center'>{ lista.title }</h2>  
       </Box>
     </Link>
   ) 

@@ -55,3 +55,7 @@ export const AddList = (list) => ({
   payload: list
 })
 
+export const DeleteList = () => ({
+  type: types.deleteList
+})
+

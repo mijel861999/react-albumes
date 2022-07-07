@@ -144,6 +144,14 @@ const albumesReducer = (state = initialState, action) => {
           action.payload
         ]
       }
+    case types.deleteList:
+      return {
+        ...state,
+        customLists: state.customLists.filter(
+          list => (list.id !== state.listActive.id)
+        ),
+        listActive: ''
+      }
     default:
       return state
   }

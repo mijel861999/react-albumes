@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { Box, Heading, SimpleGrid, IconButton, useDisclosure, Text } from '@chakra-ui/react'
-import { AddIcon } from '@chakra-ui/icons'
+import { AddIcon, DeleteIcon } from '@chakra-ui/icons'
+import { DeleteList } from '../actions/albumes'
 import Card from '../components/card'
 import PopupList from '../components/popups/popup-list'
 
 const AlbumItemPage = () => {
+  const dispatch = useDispatch()
   const { listActive, albumsList } = useSelector(state => state.albumes)
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { albumsIds } = listActive
@@ -16,6 +18,10 @@ const AlbumItemPage = () => {
 
   const handleAddAlbumToList = () => {
     onOpen()
+  }
+
+  const handleDeleteList = () => {
+    dispatch(DeleteList())
   }
 
   return(
@@ -29,7 +35,25 @@ const AlbumItemPage = () => {
         backgroundRepeat='no-repeat'
       >
       </Box>
-      <Text fontSize='2xl' fontWeight='bold' m={4} align='center'>{listActive.title}</Text>
+      <Box w='100%' display='flex' align='center' justifyContent='center'>
+        <Text
+          fontSize='2xl'
+          fontWeight='bold'
+          m={4}
+          align='center'
+        >
+          {listActive.title}
+        </Text>
+        <IconButton
+          justifySelf='flex-end'
+          m={4}
+          color='white'
+          background='red'
+          justifySelf='end'
+          onClick={handleDeleteList}
+          icon={<DeleteIcon/>}
+        />
+      </Box>
       <Box  p={4} w='100%'>
       <SimpleGrid w='100%' align='center' columns={[2, 3, 5]} gap={6}>
         <Box

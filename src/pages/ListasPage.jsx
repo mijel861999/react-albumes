@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Box, Button, Container, Heading, useDisclosure } from '@chakra-ui/react'
+import { Box, Button, Container, Heading, useDisclosure, Text } from '@chakra-ui/react'
 import ListItem from '../components/listItem'
 import PopupCreateList from '../components/popups/popup-create-list'
 import Card from '../components/card'
@@ -9,6 +9,7 @@ const ListasPage = () => {
   const { customLists } = useSelector(state => state.albumes)
   const { isOpen, onOpen, onClose } =  useDisclosure()
 
+  console.log(!customLists)
 
   const AddList = () => {
     onOpen()
@@ -28,6 +29,16 @@ const ListasPage = () => {
             lista={lista}
           />
         ))}
+        {
+          (customLists.length===0) &&
+            <Text
+              fontSize='2xl'
+              fontWeight='bold'
+              m={4}
+            >
+              No hay listas
+            </Text>
+        }
       </Box>
       <PopupCreateList
         isOpen={isOpen}

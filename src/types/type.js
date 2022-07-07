@@ -13,6 +13,7 @@ const types = {
   addAlbumToList: '[albumes] add album to list',
   addAlbumToActiveList: '[albumes] add album to active list',
   addList: '[albumes] add list',
+  deleteList: '[albumes] delete list'
 }
 
 export default types
