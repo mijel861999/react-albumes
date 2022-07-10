@@ -14,7 +14,7 @@ import {
 import { useForm } from '../../hooks/useForm.jsx'
 import { AddList } from '../../actions/albumes.js'
 
-const PopupCreateList = ({ isOpen, onClose }) => {
+const PopupCreateList = ({ isOpen, onClose, isForEdit=false }) => {
   const dispatch= useDispatch()
   const [formValues, handleInputChange, reset] = useForm({
     title: '',
@@ -39,7 +39,7 @@ const PopupCreateList = ({ isOpen, onClose }) => {
      <ModalOverlay /> 
      <ModalContent>
       <ModalHeader>
-        Crea tu lista personalizada
+        {(isForEdit) ? <>Edita tu lista</> : <>Crea tu lista personalizada </>} 
       </ModalHeader>
       <ModalCloseButton/>
       <ModalBody>

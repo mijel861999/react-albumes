@@ -1,15 +1,26 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { Box, Heading, SimpleGrid, IconButton, useDisclosure, Text } from '@chakra-ui/react'
-import { AddIcon, DeleteIcon } from '@chakra-ui/icons'
+import { 
+  Box,
+  Heading,
+  SimpleGrid,
+  IconButton,
+  useDisclosure,
+  Text
+} from '@chakra-ui/react'
+import { AddIcon, DeleteIcon, EditIcon } from '@chakra-ui/icons'
+import { motion } from 'framer-motion'
 import { DeleteList } from '../actions/albumes'
 import Card from '../components/card'
 import PopupList from '../components/popups/popup-list'
+import PopupCreateList from '../components/popups/popup-create-list'
+import defaultListImage from '../images/defaultListImage.png'
 
 const AlbumItemPage = () => {
   const dispatch = useDispatch()
   const { listActive, albumsList } = useSelector(state => state.albumes)
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const { isOpen: isOpenToEdit, onOpen: onOpenToEdit, onClose: onCloseToEdit } = useDisclosure()
   const { albumsIds } = listActive
 
   if(!listActive.id) {
@@ -24,16 +35,32 @@ const AlbumItemPage = () => {
     dispatch(DeleteList())
   }
 
+  const handleOpenPopupForEdit = () => {
+    onOpenToEdit()
+  }
+
   return(
-    <Box>
+    <motion.div
+      initial={{ x: '10%' }}
+      animate={{ x: '0%' }}
+    >
       <Box
         w='100%' 
         h='130px'
-        backgroundImage={listActive.background}
+        display='flex'
+        justifyContent='end'
+        alignItems='end'
+        backgroundImage={listActive.background ? listActive.background : defaultListImage}
         backgroundPosition='center'
         backgroundSize='cover'
         backgroundRepeat='no-repeat'
       >
+        <IconButton
+          m={3}
+          icon={<EditIcon />}
+          onClick={handleOpenPopupForEdit}
+        >
+        </IconButton>
       </Box>
       <Box w='100%' display='flex' align='center' justifyContent='center'>
         <Text
@@ -49,8 +76,7 @@ const AlbumItemPage = () => {
           m={4}
           color='white'
           background='red'
-          justifySelf='end'
-          onClick={handleDeleteList}
+          onClick={handleOpenPopupForEdit}
           icon={<DeleteIcon/>}
         />
       </Box>
@@ -84,9 +110,14 @@ const AlbumItemPage = () => {
           isOpen={isOpen} 
           onClose={onClose}
         />
+        <PopupCreateList 
+          isOpen={isOpenToEdit}
+          onClose={onCloseToEdit}
+          isForEdit={true}
+        />
       </SimpleGrid>
       </Box>
-    </Box>
+    </motion.div>
   )
 }
 

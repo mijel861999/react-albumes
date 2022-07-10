@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { Box } from '@chakra-ui/react'
 import ThemeToggleButton from './themeToggleButton'
 import SearchButtonInput from './searchButtonInput'
@@ -9,7 +8,7 @@ const Navbar = () => {
     <Box p={4} display='flex' alignItems='center' justifyContent='space-between'>
       <Box display='flex' alignItems='center'>
         <ThemeToggleButton /> 
-        <h1><Link to='/'>DiscTracker</Link></h1>
+        <h1>DiscTracker</h1>
       </Box> 
 
       <SearchButtonInput />

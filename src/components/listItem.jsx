@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { Box, Heading } from '@chakra-ui/react'
 import { SetActiveList } from '../actions/albumes'
+import defaultListImage from '../images/defaultListImage.png'
 
 const ListItem = ({ lista }) => {
   const dispatch = useDispatch()
@@ -21,7 +22,7 @@ const ListItem = ({ lista }) => {
         key={lista.id}
         w='100%'
         h='97px'
-        backgroundImage={lista.background}
+        backgroundImage={lista.background ? lista.background : defaultListImage}
         backgroundPosition='center'
         backgroundSize='cover'
         backgroundRepeat='no-repeat'

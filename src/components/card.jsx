@@ -4,6 +4,7 @@ import { Box, Heading, useDisclosure } from '@chakra-ui/react'
 
 import { SetActiveAlbum } from '../actions/albumes'
 import PopUp from '../components/popups/popup'
+import DefaultImage from '../images/default.png'
 
 const Card = ({ album, isForAction = true }) => {
   const dispatch = useDispatch()
@@ -22,7 +23,7 @@ const Card = ({ album, isForAction = true }) => {
       <Box
         w='97px'
         h='133px'
-        backgroundImage={`url(${ album.bg })`}
+        backgroundImage={(album.bg.length > 1) ? `url(${ album.bg })` : DefaultImage}
         backgroundPosition='center'
         backgroundSize='cover'
         backgroundRepeat='no-repeat'

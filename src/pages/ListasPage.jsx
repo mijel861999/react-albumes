@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { Box, Button, Container, Heading, useDisclosure, Text } from '@chakra-ui/react'
+import { motion } from 'framer-motion'
 import ListItem from '../components/listItem'
 import PopupCreateList from '../components/popups/popup-create-list'
 import Card from '../components/card'
@@ -14,6 +15,10 @@ const ListasPage = () => {
   }
 
   return (
+    <motion.div
+      initial={{ y: '10%' }}
+      animate={{ y: '0%' }}
+    >
     <Box>
       <Box textAlign='center'>
         <Button
@@ -43,6 +48,7 @@ const ListasPage = () => {
         onClose={onClose}
       />
     </Box>
+    </motion.div>
   )
 }
 
