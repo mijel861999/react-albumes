@@ -144,6 +144,20 @@ const albumesReducer = (state = initialState, action) => {
           action.payload
         ]
       }
+    case types.editList:
+      return {
+        ...state,
+        customLists: state.customLists.map(
+          list  =>  (state.listActive.id === list.id) ? ({
+            ...list,
+            ...action.payload
+          }) : list
+        ),
+        listActive: {
+          ...state.listActive,
+          ...action.payload
+        }
+      }
     case types.deleteList:
       return {
         ...state,

@@ -55,6 +55,11 @@ export const AddList = (list) => ({
   payload: list
 })
 
+export const EditList = (listData) => ({
+  type: types.editList,
+  payload: listData
+})
+
 export const DeleteList = () => ({
   type: types.deleteList
 })

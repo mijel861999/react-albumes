@@ -1,5 +1,5 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { 
   Modal,
   Heading,
@@ -11,14 +11,15 @@ import {
   Input,
   Button
 } from '@chakra-ui/react'
-import { useForm } from '../../hooks/useForm.jsx'
-import { AddList } from '../../actions/albumes.js'
+import { useForm } from '../../hooks/useForm'
+import { AddList, EditList } from '../../actions/albumes'
 
 const PopupCreateList = ({ isOpen, onClose, isForEdit=false }) => {
   const dispatch= useDispatch()
+  const { listActive } = useSelector(state => state.albumes)
   const [formValues, handleInputChange, reset] = useForm({
-    title: '',
-    background: ''
+    title: listActive.title,
+    background: listActive.background
   })
 
   const { title, background } = formValues
@@ -30,6 +31,15 @@ const PopupCreateList = ({ isOpen, onClose, isForEdit=false }) => {
       title,
       background,
       albumsIds: []
+    }))
+    onClose()
+  }
+
+  const handleEditList = () => {
+    reset()
+    dispatch(EditList({
+      title,
+      background
     }))
     onClose()
   }
@@ -63,9 +73,14 @@ const PopupCreateList = ({ isOpen, onClose, isForEdit=false }) => {
           mt={5}
           mb={4}
           align='center'
-          onClick={handleAddList}
+          onClick={isForEdit ? handleEditList : handleAddList}
         >
-          Agregar lista
+          {
+            (isForEdit) ? 
+              <>Editar</>
+            :
+              <>Agregar lista</>
+          }
         </Button>
       </ModalBody>
      </ModalContent>
