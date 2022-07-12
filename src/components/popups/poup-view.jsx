@@ -16,29 +16,19 @@ import {
 } from '@chakra-ui/react'
 import { StarIcon } from '@chakra-ui/icons'
 
-import { SetCleanActiveAlbum, AddAlbumToList } from '../../actions/albumes'
+import { SetCleanActiveAlbum } from '../../actions/albumes'
 
 import PopupFormAlbum from './popup-form-album'
 import ButtonsPopup from '../buttons/buttons-popup'
 
 
-const PopUp = ({ isOpen, onClose, album, isForAction }) => {
+const PopUpView = ({ isOpen, onClose, album }) => {
   const dispatch = useDispatch()
   const { albumActive, listActive } = useSelector(state => state.albumes)
 
   const handleClosePopUp = () => {
     dispatch(SetCleanActiveAlbum())
     onClose()
-  }
-
-  const handleAddToList = () => {
-    console.log('Add to list')
-    dispatch(AddAlbumToList(albumActive.id, listActive))
-    onClose()
-  }
-
-  const handleDeleteAlbumInList = () => {
-    alert('Eliminar album')
   }
 
   return (
@@ -89,32 +79,11 @@ const PopUp = ({ isOpen, onClose, album, isForAction }) => {
           </Box> 
         </ModalBody>
         <ModalFooter>
-          {
-            (isForAction) &&
-              <ButtonsPopup
-                handleAddToList={handleAddToList}
-                album={album}
-              />
-          }
-          {
-            (isForAction==false) &&
-              <Button
-                color='white'
-                bg='red'
-                _hover={{
-                  background: 'white',
-                  color: 'red'
-                }}
-                onClick={handleDeleteAlbumInList}
-              >
-                Eliminar de la lista
-              </Button>
-          }
         </ModalFooter>
       </ModalContent>
     </Modal>
   )
 }
 
-export default PopUp
+export default PopUpView
 

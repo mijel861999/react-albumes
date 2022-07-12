@@ -11,7 +11,6 @@ const types = {
   setCleanActiveList: '[albumes] set clean active list',
 
   addAlbumToList: '[albumes] add album to list',
-  addAlbumToActiveList: '[albumes] add album to active list',
   addList: '[albumes] add list',
   editList: '[albumes] edit list',
   deleteList: '[albumes] delete list'

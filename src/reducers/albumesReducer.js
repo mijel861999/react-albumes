@@ -123,16 +123,12 @@ const albumesReducer = (state = initialState, action) => {
               action.payload.id
             ]
           }): list)
-        )
-      }
-    case types.addAlbumToActiveList:
-      return {
-        ...state,
+        ),
         listActive: {
           ...state.listActive,
           albumsIds: [
             ...state.listActive.albumsIds,
-            action.payload
+            action.payload.id
           ]
         }
       }

@@ -36,11 +36,6 @@ export const AddAlbumToList = (id, list) => ({
   payload: {id, list}
 })
 
-export const AddAlbumToActiveList = (id) => ({
-  type: types.addAlbumToActiveList,
-  payload: id
-})
-
 export const SetActiveList = (list) => ({
   type: types.activeList,
   payload: list
