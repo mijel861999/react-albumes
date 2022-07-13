@@ -12,8 +12,10 @@ import { AddIcon, DeleteIcon, EditIcon } from '@chakra-ui/icons'
 import { motion } from 'framer-motion'
 import { DeleteList } from '../actions/albumes'
 import Card from '../components/card'
+import NewCard from '../components/new-card'
 import PopupList from '../components/popups/popup-list'
 import PopupCreateList from '../components/popups/popup-create-list'
+import NewPopup from '../components/popups/new-popup'
 import defaultListImage from '../images/defaultListImage.png'
 
 const AlbumItemPage = () => {
@@ -21,6 +23,7 @@ const AlbumItemPage = () => {
   const { listActive, albumsList } = useSelector(state => state.albumes)
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { isOpen: isOpenToEdit, onOpen: onOpenToEdit, onClose: onCloseToEdit } = useDisclosure()
+  const { isOpen: isOpenNewCard, onOpen: onOpenNewCard, onClose: onCloseNewCard } = useDisclosure()
   const { albumsIds } = listActive
 
   if(!listActive.id) {
@@ -37,6 +40,10 @@ const AlbumItemPage = () => {
 
   const handleOpenPopupForEdit = () => {
     onOpenToEdit()
+  }
+
+  const handleOpenNewCard = () => {
+    onOpenNewCard()
   }
 
   return(
@@ -98,11 +105,32 @@ const AlbumItemPage = () => {
           </IconButton>
         </Box> 
         {
+          /*
+
           albumsList.filter(album => albumsIds.includes(album.id)).map(album => (
             <Card
               key={album.title}
               album={album}
               isForAction={false}
+            />
+          ))
+          */
+        }
+        {
+          albumsList.filter(album => albumsIds.includes(album.id)).map(album => (
+            <NewCard
+              key={album.title}
+              album={album}
+              popup={
+                <NewPopup 
+                  isOpen={isOpenNewCard}
+                  onClose={onCloseNewCard}
+                  album={album} 
+                  buttonTag='Abrir'
+                  action={()=>console.log('Abrir')}
+                />
+              }
+              handleOpen={handleOpenNewCard}
             />
           ))
         }
