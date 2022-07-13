@@ -76,7 +76,7 @@ const AlbumItemPage = () => {
           m={4}
           color='white'
           background='red'
-          onClick={handleOpenPopupForEdit}
+          onClick={handleDeleteList}
           icon={<DeleteIcon/>}
         />
       </Box>
