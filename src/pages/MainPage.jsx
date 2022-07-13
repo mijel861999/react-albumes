@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Box, IconButton, SimpleGrid, useDisclosure } from '@chakra-ui/react'
 import { AddIcon } from '@chakra-ui/icons'
 import { motion } from 'framer-motion'
-import Card from '../components/Card'
+import Card from '../components/card.jsx'
 import PopupFormAlbum from '../components/popups/popup-form-album'
 
 const MainPage = () => {
