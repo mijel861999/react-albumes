@@ -9,14 +9,18 @@ import DefaultImage from '../images/default.png'
 
 const NewCard = ({ album, popup, handleOpen }) => {
   const dispatch = useDispatch()
-  console.log(popup)
-  console.log(handleOpen)
+
+  const handleOpenCard = () => {
+    console.log(album.title)
+    dispatch(SetActiveAlbum(album))
+    handleOpen()
+  }
 
   return (
     <Box
       align='center' 
       style={{ cursor: 'pointer'}} 
-      onClick={handleOpen}
+      onClick={handleOpenCard}
     >
       <Box
         w='97px'

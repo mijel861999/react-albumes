@@ -116,11 +116,11 @@ const albumesReducer = (state = initialState, action) => {
       return {
         ...state,
         customLists: state.customLists.map(
-          list => (list.id === action.payload.list.id ? ({
+          list => (list.id === state.listActive.id ? ({
             ...list,
             albumsIds: [
               ...list.albumsIds,
-              action.payload.id
+              state.albumActive.id 
             ]
           }): list)
         ),
@@ -128,8 +128,26 @@ const albumesReducer = (state = initialState, action) => {
           ...state.listActive,
           albumsIds: [
             ...state.listActive.albumsIds,
-            action.payload.id
+            state.albumActive.id 
           ]
+        }
+      }
+    case types.deleteAlbumInList:
+      return {
+        ...state,
+        customLists: state.customLists.map(
+          list => (list.id === state.listActive.id ? ({
+            ...list,
+            albumsIds: state.listActive.albumsIds.filter(
+              albumId => albumId !== state.albumActive.id
+            )
+          }): list)
+        ),
+        listActive: {
+          ...state.listActive,
+          albumsIds: state.listActive.albumsIds.filter(
+            albumId => albumId !== state.albumActive.id
+          )
         }
       }
     case types.addList:

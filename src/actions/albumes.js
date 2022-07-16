@@ -31,9 +31,12 @@ export const SetCleanActiveAlbum = () => ({
   type: types.setCleanActiveAlbum
 })
 
-export const AddAlbumToList = (id, list) => ({
-  type: types.addAlbumToList,
-  payload: {id, list}
+export const AddAlbumToList = () => ({
+  type: types.addAlbumToList
+})
+
+export const DeleteAlbumInList = () => ({
+  type: types.deleteAlbumInList
 })
 
 export const SetActiveList = (list) => ({

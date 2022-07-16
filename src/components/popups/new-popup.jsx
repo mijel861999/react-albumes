@@ -35,7 +35,7 @@ const NewPopup = ({ isOpen, onClose, album, buttonTag, action }) => {
     <Modal isOpen={isOpen} onClose={handleClosePopUp}>
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader fontSize='2xl'>{ album.title }</ModalHeader>
+        <ModalHeader fontSize='2xl'>{ albumActive.title }</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
           <Box
@@ -47,7 +47,7 @@ const NewPopup = ({ isOpen, onClose, album, buttonTag, action }) => {
             <Box
               h='250px'
               w='400px'
-              backgroundImage={`url(${ album.bg })`}
+              backgroundImage={`url(${ albumActive.bg })`}
               backgroundPosition='center'
               backgroundSize='cover'
               backgroundRepeat='no-repeat' 
@@ -60,7 +60,7 @@ const NewPopup = ({ isOpen, onClose, album, buttonTag, action }) => {
               position='absolute'
               top='130px'
               right='125px'
-              backgroundImage={`url(${ album.frontImage })`}
+              backgroundImage={`url(${ albumActive.frontImage })`}
               backgroundPosition='center'
               backgroundSize='cover'
               backgroundRepeat='no-repeat'
@@ -69,12 +69,12 @@ const NewPopup = ({ isOpen, onClose, album, buttonTag, action }) => {
           </Box>
            
           <Heading as='h1' m={4} size='xs' fontSize='xl' align='center'>{ album.artist }</Heading>
-          <Text>Nombre del album: { album.title }</Text>
-          <Text>Artista: { album.artist }</Text>
-          <Text>Año de salida: { album.year }</Text>
-          <Text>Notas pesonales: { album.notas }</Text>
+          <Text>Nombre del album: { albumActive.title }</Text>
+          <Text>Artista: { albumActive.artist }</Text>
+          <Text>Año de salida: { albumActive.year }</Text>
+          <Text>Notas pesonales: { albumActive.notas }</Text>
           <Box display='flex' alignItems='center' justifyContent='center'>
-            <Text size='2xl'>{ album.rating }</Text>
+            <Text size='2xl'>{ albumActive.rating }</Text>
             <StarIcon size='3xl' m={2}/>
           </Box> 
         </ModalBody>

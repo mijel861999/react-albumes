@@ -10,7 +10,7 @@ import {
 } from '@chakra-ui/react'
 import { AddIcon, DeleteIcon, EditIcon } from '@chakra-ui/icons'
 import { motion } from 'framer-motion'
-import { DeleteList } from '../actions/albumes'
+import { DeleteList, DeleteAlbumInList } from '../actions/albumes'
 import Card from '../components/card'
 import NewCard from '../components/new-card'
 import PopupList from '../components/popups/popup-list'
@@ -44,6 +44,11 @@ const AlbumItemPage = () => {
 
   const handleOpenNewCard = () => {
     onOpenNewCard()
+  }
+
+  const handleDeleteAlbumInList = () => {
+    dispatch(DeleteAlbumInList())
+    onCloseNewCard()
   }
 
   return(
@@ -105,18 +110,6 @@ const AlbumItemPage = () => {
           </IconButton>
         </Box> 
         {
-          /*
-
-          albumsList.filter(album => albumsIds.includes(album.id)).map(album => (
-            <Card
-              key={album.title}
-              album={album}
-              isForAction={false}
-            />
-          ))
-          */
-        }
-        {
           albumsList.filter(album => albumsIds.includes(album.id)).map(album => (
             <NewCard
               key={album.title}
@@ -126,8 +119,8 @@ const AlbumItemPage = () => {
                   isOpen={isOpenNewCard}
                   onClose={onCloseNewCard}
                   album={album} 
-                  buttonTag='Abrir'
-                  action={()=>console.log('Abrir')}
+                  buttonTag='Eliminar'
+                  action={handleDeleteAlbumInList}
                 />
               }
               handleOpen={handleOpenNewCard}
