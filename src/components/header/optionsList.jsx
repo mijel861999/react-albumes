@@ -10,6 +10,7 @@ const OptionsList = () => {
       <LinkOptions redirect='/' label='Discos' isActive={isActive} setActive={setActive} />
       <LinkOptions redirect='/tops' label='Tops' isActive={isActive} setActive={setActive} /> 
       <LinkOptions redirect='/listas' label='Listas' isActive={isActive} setActive={setActive} />
+      <LinkOptions redirect='/news' label='News' isActive={isActive} setActive={setActive} />
     </Box>
   )
 }
