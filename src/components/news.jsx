@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import { Box, Heading, Text, GridItem } from '@chakra-ui/react'
+import { Box, Heading, Text, GridItem, Link } from '@chakra-ui/react'
 
 const News = ({ title='Título', description='Esta es la descripción de la noticia ac puedes ver muchas cosas interesantes', link='https://www.google.com', newImage='https://i.ytimg.com/vi/E17UG60p1VY/maxresdefault.jpg' }) => {
   const linkRef = useRef(null)
@@ -14,9 +14,6 @@ const News = ({ title='Título', description='Esta es la descripción de la noti
         w='300px'
         border='1px solid #464646'
         borderRadius='8px'
-        _hover={{
-          background: '#283a02'
-        }}
         cursor='pointer' 
         onClick={() => handleRedirectToNew(linkRef)}
       > 
@@ -36,19 +33,19 @@ const News = ({ title='Título', description='Esta es la descripción de la noti
         >
         </Box>
         <Box p={6}>
-          <Heading>{ title }</Heading>
+          <Text as='h1'>{ title }</Text>
           <Text>
             { description }
           </Text>
         </Box> 
-        <a
+        <Link
           href={link}
           ref={linkRef}
-          target='_blank'
+          isExternal
           style={{
             display: 'none' 
           }}
-        ></a>
+        ></Link>
       </Box>
     </GridItem>
   )

@@ -1,7 +1,8 @@
 import types from '../types/type'
 
 const initialState = {
-  user: ''
+  user: '',
+  isLogged: false
 }
 
 const authReducer = (state = initialState, action) => {
